@@ -10,7 +10,7 @@ local function pre_process(msg)
       print('Checking invited user '..user_id)
       local banned = is_banned(user_id, msg.to.id)
       if banned or is_gbanned(user_id) then -- Check it with redis
-      print('User is banned!')
+      print('کاربر بن شده لست!')
       local print_name = user_print_name(msg.from):gsub("‮", "")
 	  local name = print_name:gsub("_", "")
       savelog(msg.to.id, name.." ["..msg.from.id.."] is banned and kicked ! ")-- Save to logs
@@ -297,7 +297,7 @@ end
 		resolve_username(username, kick_ban_res, cbres_extra)
       end
   end
-  if matches[1]:lower() == 'انبن ال' then -- Global unban
+  if matches[1]:lower() == 'رفع بن ال' then -- Global unban
     local user_id = matches[2]
     local chat_id = msg.to.id
       if string.match(matches[2], '^%d+$') then
@@ -334,8 +334,8 @@ return {
 	"^(بن)$",
     "^(بن) (.*)$",
     "^(انبن) (.*)$",
-    "^(انبن ال) (.*)$",
-    "^(انبن ال)$",
+    "^(رفع بن ال) (.*)$",
+    "^(رفع بن ال)$",
     "^(اخراج) (.*)$",
     "^(انبن)$",
     "^(ایدی)$",
